@@ -18,7 +18,7 @@ public class QQBot {
     private static ArrayList<String> canteens = new ArrayList<>();
 
     public static void main(String[] args) {
-        final long QQ = ;
+        final long QQ = 512845044;
         final String PASSWORD = "";
         canteens.add("学二二楼");
         canteens.add("学二一楼");
@@ -54,9 +54,18 @@ public class QQBot {
                         event.getGroup().sendMessage("课表不存在啊");
                     }
                 } else if(msgString.equals("去哪吃")){
-                    int canteen_id = (int)(System.currentTimeMillis() % 10) % 5;
+                    int canteen_id = getRandomIndex(5);
                     event.getGroup().sendMessage(MessageUtils.newChain(canteens.get(canteen_id))
-                            .plus(new Face(Face.se)));
+                            .plus(new Face(Face.aixin)));
+                } else if(msgString.equals("学二") || msgString.equals("学三") || msgString.equals("学五") || msgString.equals("学一")){
+                    int floor = getRandomIndex(2);
+                    if (floor == 0){
+                        event.getGroup().sendMessage(MessageUtils.newChain("一楼")
+                                .plus(new Face(Face.aixin)));
+                    } else {
+                        event.getGroup().sendMessage(MessageUtils.newChain("二楼")
+                                .plus(new Face(Face.aixin)));
+                    }
                 }
 
                 return ListeningStatus.LISTENING;
@@ -69,5 +78,9 @@ public class QQBot {
         });
 
         bot.join();
+    }
+
+    private static int getRandomIndex(int range){
+        return (int)(System.currentTimeMillis() % 10) % range;
     }
 }
