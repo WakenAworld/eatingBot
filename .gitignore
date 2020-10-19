@@ -5,6 +5,8 @@ target/
 !**/src/test/**/target/
 .mvnw
 .mvnw.cmd
+deviceInfo-new.json
+deviceInfo.json
 
 ### STS ###
 .apt_generated
