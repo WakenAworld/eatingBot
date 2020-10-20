@@ -38,20 +38,21 @@ public class QQBot {
         });
 
         bot.login();
+        goodNight.scheduleAtFixedRate(()->{
+            bot.getGroup(821909167)
+                    .sendMessage(MessageUtils.newChain("晚安晖神")
+                            .plus(new At(bot
+                                    .getGroup(821909167)
+                                    .getMembers()
+                                    .get(2551730844L))));
+        },13,24, TimeUnit.HOURS);
 
 //        bot.getFriends().forEach(friend -> System.out.println(friend.getId()+":"+friend.getNick()));
         Events.registerEvents(bot, new SimpleListenerHost() {
             @EventHandler
             public ListeningStatus onGroupMessage(GroupMessageEvent event){
                 try {
-                    goodNight.scheduleAtFixedRate(()->{
-                        bot.getGroup(821909167)
-                                .sendMessage(MessageUtils.newChain("晚安晖神")
-                                        .plus(new At(bot
-                                                .getGroup(821909167)
-                                                .getMembers()
-                                                .get(2551730844L))));
-                    },4,24, TimeUnit.HOURS);
+
                 } catch (Exception e){
                     e.printStackTrace();
                 }
